@@ -1,1 +1,22 @@
+{
+  "name": "cs546_final_project-main",
+  "version": "1.0.0",
+  "description": "Package.JSON file for CS546 final project",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Luke Bowyer 10450128",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "handlebars": "^4.7.8",
+    "mongodb": "^6.12.0"
+  }
+}
 
