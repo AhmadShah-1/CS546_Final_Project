@@ -27,6 +27,9 @@ app.set('views', './views');
 
 configRoutes(app);
 
-app.listen(3002, () => {
+const PORT = 3002
+
+app.listen(PORT, async () => {
     console.log("Server is running at http://localhost:3002");
+    await open(`http://localhost:${PORT}`);
 });
