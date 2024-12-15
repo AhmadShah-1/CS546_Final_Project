@@ -3,6 +3,13 @@
 ## Overview
 This project is a fitness tracking tool that currently includes user authentication (sign up and login). Users can register with their username, email, and password. Their data is securely stored in MongoDB with encrypted passwords. Fitness goals will be added in future iterations.
 
+##Procedure for running program for windows
+1. Navigate to file in cmd or powershell
+2. Enter "npm install"
+   - This should download all required dependencies
+3. Enter "npm start"
+   - web program will automatically open up in browser
+
 ## Code Flow
 1. **User Authentication:**
    - The app routes `/signup` and `/login` allow users to create accounts and log in.
