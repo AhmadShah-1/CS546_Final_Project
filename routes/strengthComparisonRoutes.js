@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     try {
         const data = await StrengthComparison.find({ userId: req.session.user._id }).lean();
-        res.render('strengthComparisons', { data });
+        res.render('strengthComparisions', { data });
     } catch (error) {
         console.error('Fetch Strength Data error:', error);
         res.status(500).render('error', { error: 'Failed to fetch strength data.' });
