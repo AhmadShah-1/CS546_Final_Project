@@ -1,0 +1,27 @@
+{
+  "name": "cs546_final_project",
+  "version": "1.0.0",
+  "description": "This project is a fitness tracking tool that currently includes user authentication (sign up and login). Users can register with their username, email, and password. Their data is securely stored in MongoDB with encrypted passwords. Fitness goals will be added in future iterations.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "seed": "node tasks/seed.js"
+  },
+  "author": "Syed Ahmad Shah",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "handlebars": "^4.7.8",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.0",
+    "open": "^10.1.0"
+  }
+}
