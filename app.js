@@ -5,6 +5,7 @@ import { engine } from 'express-handlebars';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import open from 'open'
 
 import configRoutes from './routes/index.js';
 
@@ -42,6 +43,7 @@ app.set('views', path.join(__dirname, 'views'));
 configRoutes(app);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, aysynch () => {
     console.log(`Server running at http://localhost:${PORT}`);
+    await open(`http://localhost:${PORT}`);
 });
