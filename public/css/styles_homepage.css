@@ -1,0 +1,40 @@
+main {
+    text-align: center;
+}
+
+header {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+button#viewProfileButton {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+}
+
+button#addWorkoutButton {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+}
+
+button#addWorkoutButton:hover {
+    background-color: #004494;
+}
+
+
+footer {
+    text-align: center;
+}
