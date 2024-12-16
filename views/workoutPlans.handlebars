@@ -1,32 +1,27 @@
 <div class="container">
     <h1 class="page-title">Workout Plans</h1>
-    {{#if plans.length}}
-        <ul class="list-group">
-            {{#each plans}}
-                <li class="list-group-item">
-                    <strong>{{planName}}</strong> (Created on {{createdAt}})
-                    <ul>
-                        {{#each exercises}}
-                            <li>{{exerciseName}} - {{sets}} sets of {{reps}} reps</li>
-                        {{/each}}
-                    </ul>
-                </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p class="no-data">No workout plans found.</p>
-    {{/if}}
+
+    <div id="error-alert" style="color:red; display:none;"></div>
+
+    <div id="workout-plans-container"></div>
 
     <h2>Add New Workout Plan</h2>
-    <form action="/workoutPlans" method="POST" class="form">
+    <form id="new-workout-form" class="form">
         <div class="form-group">
-            <label for="planName">Plan Name:</label>
-            <input type="text" id="planName" name="planName" class="form-control" required />
+            <label for="plan-name">Plan Name:</label>
+            <input type="text" id="plan-name" name="planName" class="form-control" required />
         </div>
-        <div class="form-group">
-            <label for="exercises">Exercises (JSON format):</label>
-            <textarea id="exercises" name="exercises" class="form-control" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn">Add Plan</button>
+
+        <h3>Exercises:</h3>
+        <div id="exercises-container"></div>
+
+        <button type="button" id="add-exercise-btn" class="btn btn-secondary">Add Exercise</button>
+        <br /><br />
+
+        <button type="submit" class="btn btn-primary">Create Workout Plan</button>
     </form>
+
+    {{#if script_partial}}
+        {{> (lookup . 'script_partial') }}
+    {{/if}}
 </div>

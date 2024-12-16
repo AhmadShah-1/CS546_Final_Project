@@ -10,7 +10,7 @@ import open from 'open'
 import configRoutes from './routes/index.js';
 
 dotenv.config();
-//j
+
 mongoose
     .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB!'))
@@ -30,11 +30,11 @@ app.use(
     })
 );
 
-// Serve static files
-// We'll need the absolute path for the public folder
+// absolute path for the public folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 
 app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
@@ -43,7 +43,7 @@ app.set('views', path.join(__dirname, 'views'));
 configRoutes(app);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, aysynch () => {
+app.listen(PORT, async () => {
     console.log(`Server running at http://localhost:${PORT}`);
     await open(`http://localhost:${PORT}`);
 });

@@ -119,7 +119,6 @@ router.get('/dashboard', async (req, res) => {
             req.session.destroy();
             return res.redirect('/login');
         }
-        // Show user profile info and links to other sections
         res.render('dashboard', { user });
     } catch (error) {
         console.error('Dashboard error:', error);
