@@ -1,11 +1,50 @@
 <h1>Signup</h1>
 <form action="/signup" method="POST">
+    {{#if error}}
+        <p style="color:red;">{{error}}</p>
+    {{/if}}
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required />
+
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required />
+
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required />
+
+    <label for="goalType">Goal Type:</label>
+    <input type="text" id="goalType" name="goalType" placeholder="weight loss / muscle gain" />
+
+    <label for="targetWeight">Target Weight:</label>
+    <input type="number" id="targetWeight" name="targetWeight" />
+
+    <label for="currentWeight">Current Weight:</label>
+    <input type="number" id="currentWeight" name="currentWeight" />
+
+    <label for="timeFrame">Time Frame:</label>
+    <input type="text" id="timeFrame" name="timeFrame" placeholder="3 months, etc." />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" />
+
+    <label for="height">Height (in cm):</label>
+    <input type="number" id="height" name="height" />
+
+    <label for="bodyWeight">Body Weight (kg):</label>
+    <input type="number" id="bodyWeight" name="bodyWeight" />
+
+    <label for="yearsLifting">Years Lifting:</label>
+    <input type="number" id="yearsLifting" name="yearsLifting" />
+
+    <label for="bio">Bio:</label>
+    <input type="text" id="bio" name="bio" />
+
+    <label for="weightUnit">Weight Unit (kg/lbs):</label>
+    <input type="text" id="weightUnit" name="weightUnit" placeholder="kg or lbs" />
+
+    <label for="heightUnit">Height Unit (cm/ft):</label>
+    <input type="text" id="heightUnit" name="heightUnit" placeholder="cm or ft" />
+
     <button type="submit">Signup</button>
 </form>
 <a href="/login">Go to Login</a>

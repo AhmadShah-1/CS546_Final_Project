@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="page-title">Nutrition Plans</h1>
+    {{#if plans.length}}
+        <ul class="list-group">
+            {{#each plans}}
+                <li class="list-group-item">
+                    <strong>{{planName}}</strong> (Created on {{creationDate}})
+                    <ul>
+                        {{#each meals}}
+                            <li><strong>{{mealType}}:</strong> {{#each items}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p class="no-data">No nutrition plans found.</p>
+    {{/if}}
+
+    <h2>Add New Nutrition Plan</h2>
+    <form action="/nutritionPlans" method="POST" class="form">
+        <div class="form-group">
+            <label for="planName">Plan Name:</label>
+            <input type="text" id="planName" name="planName" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="meals">Meals (JSON format):</label>
+            <textarea id="meals" name="meals" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Add Plan</button>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+    <h1 class="page-title">Workout Plans</h1>
+    {{#if plans.length}}
+        <ul class="list-group">
+            {{#each plans}}
+                <li class="list-group-item">
+                    <strong>{{planName}}</strong> (Created on {{createdAt}})
+                    <ul>
+                        {{#each exercises}}
+                            <li>{{exerciseName}} - {{sets}} sets of {{reps}} reps</li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p class="no-data">No workout plans found.</p>
+    {{/if}}
+
+    <h2>Add New Workout Plan</h2>
+    <form action="/workoutPlans" method="POST" class="form">
+        <div class="form-group">
+            <label for="planName">Plan Name:</label>
+            <input type="text" id="planName" name="planName" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="exercises">Exercises (JSON format):</label>
+            <textarea id="exercises" name="exercises" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Add Plan</button>
+    </form>
+</div>

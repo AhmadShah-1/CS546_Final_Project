@@ -1,0 +1,22 @@
+{{!-- A simple dashboard with user info --}}
+<div class="container">
+    <h1>Welcome, {{user.username}}!</h1>
+    <p>Email: {{user.email}}</p>
+
+    {{#if user.fitnessGoals}}
+        <h3>Your Fitness Goals:</h3>
+        <p>Goal Type: {{user.fitnessGoals.goalType}}</p>
+        <p>Target Weight: {{user.fitnessGoals.targetWeight}}</p>
+        <p>Current Weight: {{user.fitnessGoals.currentWeight}}</p>
+        <p>Time Frame: {{user.fitnessGoals.timeFrame}}</p>
+    {{/if}}
+
+    <h3>Navigation</h3>
+    <ul>
+        <li><a href="/nutritionPlans">Nutrition Plans</a></li>
+        <li><a href="/workoutPlans">Workout Plans</a></li>
+        <li><a href="/strengthComparisons">Strength Comparisons</a></li>
+        <li><a href="/progress">Progress</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
