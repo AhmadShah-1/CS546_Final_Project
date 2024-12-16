@@ -46,4 +46,12 @@ router.get('/home', (req, res) => {
     res.render('home', { user: req.session.user });
 });
 
+router.get('/profile', (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+
+    res.render('profile', { user: req.session.user });
+});
+
 export default router;
