@@ -1,32 +1,28 @@
 <div class="container">
     <h1 class="page-title">Nutrition Plans</h1>
-    {{#if plans.length}}
-        <ul class="list-group">
-            {{#each plans}}
-                <li class="list-group-item">
-                    <strong>{{planName}}</strong> (Created on {{creationDate}})
-                    <ul>
-                        {{#each meals}}
-                            <li><strong>{{mealType}}:</strong> {{#each items}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</li>
-                        {{/each}}
-                    </ul>
-                </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p class="no-data">No nutrition plans found.</p>
-    {{/if}}
+
+    <div id="error-alert" style="color:red; display:none;"></div>
+
+    
+    <div id="nutrition-plans-container"></div>
 
     <h2>Add New Nutrition Plan</h2>
-    <form action="/nutritionPlans" method="POST" class="form">
+    <form id="new-nutrition-form" class="form">
         <div class="form-group">
-            <label for="planName">Plan Name:</label>
-            <input type="text" id="planName" name="planName" class="form-control" required />
+            <label for="plan-name">Plan Name:</label>
+            <input type="text" id="plan-name" name="planName" class="form-control" required />
         </div>
-        <div class="form-group">
-            <label for="meals">Meals (JSON format):</label>
-            <textarea id="meals" name="meals" class="form-control" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn">Add Plan</button>
+
+        <h3>Meals:</h3>
+        <div id="meals-container"></div>
+
+        <button type="button" id="add-meal-btn" class="btn btn-secondary">Add Meal</button>
+        <br /><br />
+
+        <button type="submit" class="btn btn-primary">Create Nutrition Plan</button>
     </form>
+
+    {{#if script_partial}}
+        {{> (lookup . 'script_partial') }}
+    {{/if}}
 </div>
