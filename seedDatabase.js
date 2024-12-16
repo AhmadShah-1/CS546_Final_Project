@@ -1,16 +1,13 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// Models
 import User from './models/User.js';
 import NutritionPlan from './models/NutritionPlan.js';
 import WorkoutPlan from './models/WorkoutPlan.js';
 import StrengthComparison from './models/StrengthComparison.js';
 
-// Load environment variables
 dotenv.config();
 
-// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -18,16 +15,13 @@ mongoose.connect(process.env.MONGO_URI, {
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Seed Data
 const seedData = async () => {
     try {
-        // Clear existing data
         await User.deleteMany({});
         await NutritionPlan.deleteMany({});
         await WorkoutPlan.deleteMany({});
         await StrengthComparison.deleteMany({});
 
-        // Create sample users
         const users = await User.create([
             {
                 username: 'John_Doe',
@@ -71,7 +65,6 @@ const seedData = async () => {
             },
         ]);
 
-        // Create sample nutrition plans
         await NutritionPlan.create([
             {
                 userId: users[0]._id,
@@ -93,7 +86,6 @@ const seedData = async () => {
             },
         ]);
 
-        // Create sample workout plans
         await WorkoutPlan.create([
             {
                 userId: users[0]._id,
@@ -113,7 +105,6 @@ const seedData = async () => {
             },
         ]);
 
-        // Create sample strength comparison data
         await StrengthComparison.create([
             {
                 userId: users[0]._id,
