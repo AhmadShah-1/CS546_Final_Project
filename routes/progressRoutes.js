@@ -1,19 +1,20 @@
 import express from 'express';
 import Progress from '../models/Progress.js';
+import User from '../models/User.js'; 
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     try {
-        const progressEntries = await Progress.find({ userId: req.session.user._id }).sort({ date: -1 }).lean();
-        res.render('progress', { progressEntries });
+        const user = await User.findById(req.session.user._id).lean(); 
+        const progressEntries = await Progress.find({ userId: req.session.user._id }).sort({ date: 1 }).lean();
+        res.render('progress', { progressEntries, user });
     } catch (error) {
         console.error('Fetch Progress error:', error);
         res.status(500).render('error', { error: 'Failed to fetch progress data.' });
     }
 });
-
 router.post('/', async (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     try {
