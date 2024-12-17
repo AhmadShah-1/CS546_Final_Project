@@ -6,14 +6,8 @@
             {{#each progressEntries}}
                 <li class="list-group-item">
                     <strong>Date:</strong> {{this.date}}
-                    {{#if this.metrics.weight}}
-                        <br/><strong>Weight:</strong> {{this.metrics.weight}}
-                    {{/if}}
-                    {{#if this.metrics.performance}}
-                        <br/><strong>Performance:</strong> {{this.metrics.performance}}
-                    {{/if}}
-                    {{#if this.metrics.goalProgress}}
-                        <br/><strong>Goal Progress:</strong> {{this.metrics.goalProgress}}%
+                    {{#if this.metrics}}
+                        <br/><strong>Weight:</strong> {{this.metrics}} kg
                     {{/if}}
                     {{#if this.notes}}
                         <br/><strong>Notes:</strong> {{this.notes}}
@@ -32,9 +26,8 @@
             <input type="text" id="date" name="date" class="form-control" required />
         </div>
         <div class="form-group">
-            <label for="metrics">Metrics (JSON format):</label>
-            <textarea id="metrics" name="metrics" class="form-control" rows="3" required></textarea>
-            <small>Example: {"weight":80,"performance":"5km run","goalProgress":50}</small>
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="metrics" name="metrics" class="form-control" step="0.1" required />
         </div>
         <div class="form-group">
             <label for="notes">Notes:</label>
@@ -42,50 +35,25 @@
         </div>
         <button type="submit" class="btn">Add Progress</button>
     </form>
+
     <div class="chart-container">
-    <h2>Progress Chart</h2>
-    <canvas id="progressChart"></canvas>
-</div>
-<script>
-    const fitnessGoals = {{{json user.fitnessGoals}}}; // Serialize server-side data
-    const progressEntries = {{{json progressEntries}}}; // Serialize server-side data
+        <h2>Progress Chart</h2>
+        <canvas id="progressChart"></canvas>
+    </div>
 
-    console.log('Fitness Goals:', fitnessGoals);
-    console.log('Progress Entries:', progressEntries);
+    <!-- gets data from server -->
+    <script>
+        const fitnessGoals = {{{json user.fitnessGoals}}}; // Serialize server-side data
+        const progressEntries = {{{json progressEntries}}}; // Serialize server-side data
+    </script>
 
-    const labels = ['Start', ...progressEntries.map(entry => entry.date), 'Goal'];
-    const data = [
-        fitnessGoals.currentWeight,
-        ...progressEntries.map(entry => entry.metrics.weight),
-        fitnessGoals.targetWeight
-    ];
+    <!-- External .js files -->
+    <script src="/js/chart.umd.js"></script>
+    <script src="/js/progressChart.js"></script>
 
-    const ctx = document.getElementById('progressChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Weight Progress',
-                data: data,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: false,
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true
-                }
-            },
-            scales: {
-                x: { title: { display: true, text: 'Time' } },
-                y: { title: { display: true, text: 'Weight (kg)' } }
-            }
-        }
-    });
-</script>
-<script src="/js/chart.umd.js"></script>
+    <script>
+        renderProgressChart(fitnessGoals, progressEntries);
+    </script>
+
+    <li><a href="/dashboard">dashboard</a></li>
 </div>
