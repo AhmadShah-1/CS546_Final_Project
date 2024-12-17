@@ -8,20 +8,25 @@ router.get('/', async (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     try {
         const user = await User.findById(req.session.user._id).lean(); 
-        const progressEntries = await Progress.find({ userId: req.session.user._id }).sort({ date: 1 }).lean();
+        const progressEntries = await Progress.find({ userId: req.session.user._id })
+            .sort({ date: 1 })
+            .lean();
+
         res.render('progress', { progressEntries, user });
     } catch (error) {
         console.error('Fetch Progress error:', error);
         res.status(500).render('error', { error: 'Failed to fetch progress data.' });
     }
 });
+
 router.post('/', async (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     try {
         const { date, weight, benchPress, squat, deadlift, notes } = req.body;
 
-        if (!date) {
-            throw new Error('Date is required.');
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/; //validates that it is in yyyy-mm-dd format
+        if (!date || !datePattern.test(date)) {
+            throw new Error('Date must be in YYYY-MM-DD format.');
         }
 
         const parsedMetrics = {
@@ -54,6 +59,5 @@ router.post('/', async (req, res) => {
         res.status(400).render('error', { error: error.message });
     }
 });
-
 
 export default router;
