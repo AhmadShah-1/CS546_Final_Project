@@ -81,6 +81,56 @@
         }
     </style>
 </head>
+<div class="form-group">
+    <label for="password">Password:</label>
+    <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        placeholder="Enter a secure password" 
+        required 
+        oninput="validatePassword()" 
+    />
+    <ul id="password-requirements" style="font-size: 0.9em; color: #666; margin-top: 10px; list-style: none; padding: 0;">
+        <li id="length" style="color: red;">&#10008; At least 8 characters</li>
+        <li id="uppercase" style="color: red;">&#10008; One uppercase letter</li>
+        <li id="lowercase" style="color: red;">&#10008; One lowercase letter</li>
+        <li id="number" style="color: red;">&#10008; One number</li>
+        <li id="special" style="color: red;">&#10008; One special character (@, $, !, %, *, ?, &)</li>
+    </ul>
+</div>
+
+<script>
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+
+        // Validation conditions
+        const lengthCondition = password.length >= 8;
+        const uppercaseCondition = /[A-Z]/.test(password);
+        const lowercaseCondition = /[a-z]/.test(password);
+        const numberCondition = /[0-9]/.test(password);
+        const specialCharacterCondition = /[@$!%*?&]/.test(password);
+
+        // Update UI for each condition
+        updateCondition('length', lengthCondition);
+        updateCondition('uppercase', uppercaseCondition);
+        updateCondition('lowercase', lowercaseCondition);
+        updateCondition('number', numberCondition);
+        updateCondition('special', specialCharacterCondition);
+    }
+
+    function updateCondition(elementId, conditionMet) {
+        const element = document.getElementById(elementId);
+        if (conditionMet) {
+            element.style.color = 'green';
+            element.innerHTML = '&#10004; ' + element.textContent.substring(2);
+        } else {
+            element.style.color = 'red';
+            element.innerHTML = '&#10008; ' + element.textContent.substring(2);
+        }
+    }
+</script>
+
 <body>
     <div class="signup-container">
         <h1>Create Your Account</h1>
