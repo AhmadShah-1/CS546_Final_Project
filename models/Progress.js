@@ -7,7 +7,12 @@ const progressSchema = new mongoose.Schema({
         ref: 'User',
     },
     date: { type: String, required: true },
-    metrics: { type: Number, required: true },
+    metrics: {
+        weight: { type: Number, required: false },
+        benchPress: { type: Number, required: false },
+        squat: { type: Number, required: false },
+        deadlift: { type: Number, required: false },
+    },
     notes: {
         type: String,
         required: false,
