@@ -23,12 +23,17 @@ router.post('/', async (req, res) => {
             throw new Error('Date is required.');
         }
 
-        let parsedMetrics;
+
+        let parsedMetrics = Number(metrics); // Convert input to a number
+        if (isNaN(parsedMetrics)) {
+            throw new Error('Metrics must be a valid number.');
+        }
+        /*let parsedMetrics;
         try {
             parsedMetrics = JSON.parse(metrics);
         } catch (err) {
             throw new Error('Metrics must be valid JSON.');
-        }
+        }*/
 
         const newProgress = new Progress({
             userId: req.session.user._id,
