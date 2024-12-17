@@ -110,6 +110,13 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/exercise-explanation', (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    res.render('exercise-explanation');
+});
+
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/login');
