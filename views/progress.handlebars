@@ -41,11 +41,13 @@
         <canvas id="progressChart"></canvas>
     </div>
 
+    <!-- gets data from server -->
     <script>
         const fitnessGoals = {{{json user.fitnessGoals}}}; // Serialize server-side data
         const progressEntries = {{{json progressEntries}}}; // Serialize server-side data
     </script>
 
+    <!-- External .js files -->
     <script src="/js/chart.umd.js"></script>
     <script src="/js/progressChart.js"></script>
 
