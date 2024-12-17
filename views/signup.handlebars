@@ -5,56 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="/styles.css" />
+    <style>
+        /* Inline basic styling to enhance appearance */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .signup-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #6c63ff;
+            box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+        }
+        button {
+            width: 100%;
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #5a54e0;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .link a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<form action="/signup" method="POST">
-    {{#if error}}
-        <p style="color:red;">{{error}}</p>
-    {{/if}}
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required />
+    <div class="signup-container">
+        <h1>Create Your Account</h1>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
+        {{#if error}}
+            <p class="error-message">{{error}}</p>
+        {{/if}}
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required />
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required />
+            </div>
 
-    <label for="goalType">Goal Type:</label>
-    <input type="text" id="goalType" name="goalType" placeholder="weight loss / muscle gain" />
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            </div>
 
-    <label for="targetWeight">Target Weight:</label>
-    <input type="number" id="targetWeight" name="targetWeight" />
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter a secure password" required />
+            </div>
 
-    <label for="currentWeight">Current Weight:</label>
-    <input type="number" id="currentWeight" name="currentWeight" />
+            <div class="form-group">
+                <label for="goalType">Goal Type:</label>
+                <input type="text" id="goalType" name="goalType" placeholder="e.g., weight loss, muscle gain" />
+            </div>
 
-    <label for="timeFrame">Time Frame:</label>
-    <input type="text" id="timeFrame" name="timeFrame" placeholder="3 months, etc." />
+            <div class="form-group">
+                <label for="targetWeight">Target Weight:</label>
+                <input type="number" id="targetWeight" name="targetWeight" placeholder="Enter target weight" />
+            </div>
 
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" />
+            <div class="form-group">
+                <label for="currentWeight">Current Weight:</label>
+                <input type="number" id="currentWeight" name="currentWeight" placeholder="Enter current weight" />
+            </div>
 
-    <label for="height">Height (in cm):</label>
-    <input type="number" id="height" name="height" />
+            <div class="form-group">
+                <label for="timeFrame">Time Frame:</label>
+                <input type="text" id="timeFrame" name="timeFrame" placeholder="e.g., 3 months" />
+            </div>
 
-    <label for="bodyWeight">Body Weight (kg):</label>
-    <input type="number" id="bodyWeight" name="bodyWeight" />
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" />
+            </div>
 
-    <label for="yearsLifting">Years Lifting:</label>
-    <input type="number" id="yearsLifting" name="yearsLifting" />
+            <div class="form-group">
+                <label for="height">Height (in cm):</label>
+                <input type="number" id="height" name="height" placeholder="Enter your height in cm" />
+            </div>
 
-    <label for="bio">Bio:</label>
-    <input type="text" id="bio" name="bio" />
+            <div class="form-group">
+                <label for="bodyWeight">Body Weight (kg):</label>
+                <input type="number" id="bodyWeight" name="bodyWeight" placeholder="Enter body weight" />
+            </div>
 
-    <label for="weightUnit">Weight Unit (kg/lbs):</label>
-    <input type="text" id="weightUnit" name="weightUnit" placeholder="kg or lbs" />
+            <div class="form-group">
+                <label for="yearsLifting">Years Lifting:</label>
+                <input type="number" id="yearsLifting" name="yearsLifting" placeholder="Enter years of lifting experience" />
+            </div>
 
-    <label for="heightUnit">Height Unit (cm/ft):</label>
-    <input type="text" id="heightUnit" name="heightUnit" placeholder="cm or ft" />
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <input type="text" id="bio" name="bio" placeholder="Tell us about yourself" />
+            </div>
 
-    <button type="submit">Signup</button>
-</form>
-<a href="/login">Go to Login</a>
+            <div class="form-group">
+                <label for="weightUnit">Weight Unit (kg/lbs):</label>
+                <input type="text" id="weightUnit" name="weightUnit" placeholder="kg or lbs" />
+            </div>
+
+            <div class="form-group">
+                <label for="heightUnit">Height Unit (cm/ft):</label>
+                <input type="text" id="heightUnit" name="heightUnit" placeholder="cm or ft" />
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="link">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+    </div>
 </body>
 </html>
