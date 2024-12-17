@@ -7,16 +7,16 @@
                 <li class="list-group-item">
                     <strong>Date:</strong> {{this.date}}
                     {{#if this.metrics.weight}}
-                        <br/><strong>Weight:</strong> {{this.metrics.weight}} lbs
+                        <br/><strong>Weight:</strong> {{this.metrics.weight}} kg
                     {{/if}}
                     {{#if this.metrics.benchPress}}
-                        <br/><strong>Bench Press:</strong> {{this.metrics.benchPress}} lbs
+                        <br/><strong>Bench Press:</strong> {{this.metrics.benchPress}} kg
                     {{/if}}
                     {{#if this.metrics.squat}}
-                        <br/><strong>Squat:</strong> {{this.metrics.squat}} lbs
+                        <br/><strong>Squat:</strong> {{this.metrics.squat}} kg
                     {{/if}}
                     {{#if this.metrics.deadlift}}
-                        <br/><strong>Deadlift:</strong> {{this.metrics.deadlift}} lbs
+                        <br/><strong>Deadlift:</strong> {{this.metrics.deadlift}} kg
                     {{/if}}
                     {{#if this.notes}}
                         <br/><strong>Notes:</strong> {{this.notes}}
@@ -35,19 +35,19 @@
             <input type="text" id="date" name="date" class="form-control" required />
         </div>
         <div class="form-group">
-            <label for="weight">Weight (lbs):</label>
+            <label for="weight">Weight (kg):</label>
             <input type="number" id="weight" name="weight" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
-            <label for="benchPress">Bench Press (lbs):</label>
+            <label for="benchPress">Bench Press (kg):</label>
             <input type="number" id="benchPress" name="benchPress" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
-            <label for="squat">Squat (lbs):</label>
+            <label for="squat">Squat (kg):</label>
             <input type="number" id="squat" name="squat" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
-            <label for="deadlift">Deadlift (lbs):</label>
+            <label for="deadlift">Deadlift (kg):</label>
             <input type="number" id="deadlift" name="deadlift" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
@@ -74,17 +74,28 @@
     </div>
 
     <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            const dateInput = document.getElementById('date');
+            const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+            if (!datePattern.test(dateInput.value)) {
+                event.preventDefault(); 
+                alert('Please enter the date in YYYY-MM-DD format.');
+                dateInput.focus();
+            }
+        });
+    </script>
+
+    <script>
         const progressEntries = {{{json progressEntries}}};
     </script>
 
     <script src="/js/chart.umd.js"></script>
     <script src="/js/progressChart.js"></script>
 
-    <!-- Render the chart -->
     <script>
         renderProgressChart(progressEntries);
     </script>
 
-    <a href="/dashboard" class="btn2" style="margin-top:20px;">Return to Dashboard</a>
-
+    <li><a href="/dashboard">Dashboard</a></li>
 </div>
