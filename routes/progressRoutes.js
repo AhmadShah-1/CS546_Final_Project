@@ -18,22 +18,27 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     try {
-        const { date, metrics, notes } = req.body;
+        const { date, weight, benchPress, squat, deadlift, notes } = req.body;
+
         if (!date) {
             throw new Error('Date is required.');
         }
 
+        const parsedMetrics = {
+            weight: weight ? Number(weight) : null,
+            benchPress: benchPress ? Number(benchPress) : null,
+            squat: squat ? Number(squat) : null,
+            deadlift: deadlift ? Number(deadlift) : null,
+        };
 
-        let parsedMetrics = Number(metrics); // Convert input to a number
-        if (isNaN(parsedMetrics)) {
-            throw new Error('Metrics must be a valid number.');
+        if (
+            parsedMetrics.weight === null &&
+            parsedMetrics.benchPress === null &&
+            parsedMetrics.squat === null &&
+            parsedMetrics.deadlift === null
+        ) {
+            throw new Error('At least one metric (Weight, Bench Press, Squat, Deadlift) must be provided.');
         }
-        /*let parsedMetrics;
-        try {
-            parsedMetrics = JSON.parse(metrics);
-        } catch (err) {
-            throw new Error('Metrics must be valid JSON.');
-        }*/
 
         const newProgress = new Progress({
             userId: req.session.user._id,
@@ -41,6 +46,7 @@ router.post('/', async (req, res) => {
             metrics: parsedMetrics,
             notes,
         });
+
         await newProgress.save();
         res.redirect('/progress');
     } catch (error) {
