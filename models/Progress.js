@@ -7,11 +7,7 @@ const progressSchema = new mongoose.Schema({
         ref: 'User',
     },
     date: { type: String, required: true },
-    metrics: {
-        weight: { type: Number, required: false },
-        performance: { type: String, required: false },
-        goalProgress: { type: Number, required: false },
-    },
+    metrics: { type: Number, required: true },
     notes: {
         type: String,
         required: false,
