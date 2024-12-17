@@ -6,8 +6,17 @@
             {{#each progressEntries}}
                 <li class="list-group-item">
                     <strong>Date:</strong> {{this.date}}
-                    {{#if this.metrics}}
-                        <br/><strong>Weight:</strong> {{this.metrics}} kg
+                    {{#if this.metrics.weight}}
+                        <br/><strong>Weight:</strong> {{this.metrics.weight}} kg
+                    {{/if}}
+                    {{#if this.metrics.benchPress}}
+                        <br/><strong>Bench Press:</strong> {{this.metrics.benchPress}} kg
+                    {{/if}}
+                    {{#if this.metrics.squat}}
+                        <br/><strong>Squat:</strong> {{this.metrics.squat}} kg
+                    {{/if}}
+                    {{#if this.metrics.deadlift}}
+                        <br/><strong>Deadlift:</strong> {{this.metrics.deadlift}} kg
                     {{/if}}
                     {{#if this.notes}}
                         <br/><strong>Notes:</strong> {{this.notes}}
@@ -27,7 +36,19 @@
         </div>
         <div class="form-group">
             <label for="weight">Weight (kg):</label>
-            <input type="number" id="metrics" name="metrics" class="form-control" step="0.1" required />
+            <input type="number" id="weight" name="weight" class="form-control" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="benchPress">Bench Press (kg):</label>
+            <input type="number" id="benchPress" name="benchPress" class="form-control" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="squat">Squat (kg):</label>
+            <input type="number" id="squat" name="squat" class="form-control" step="0.1" />
+        </div>
+        <div class="form-group">
+            <label for="deadlift">Deadlift (kg):</label>
+            <input type="number" id="deadlift" name="deadlift" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
             <label for="notes">Notes:</label>
@@ -36,24 +57,34 @@
         <button type="submit" class="btn">Add Progress</button>
     </form>
 
+    <h2>Select Chart</h2>
+    <div class="form-group">
+        <label for="metricSelector">Select Metric:</label>
+        <select id="metricSelector" class="form-control">
+            <option value="weight">Weight</option>
+            <option value="benchPress">Bench Press</option>
+            <option value="squat">Squat</option>
+            <option value="deadlift">Deadlift</option>
+        </select>
+    </div>
+
     <div class="chart-container">
         <h2>Progress Chart</h2>
         <canvas id="progressChart"></canvas>
     </div>
 
-    <!-- gets data from server -->
+    <!-- data from server -->
     <script>
-        const fitnessGoals = {{{json user.fitnessGoals}}}; // Serialize server-side data
         const progressEntries = {{{json progressEntries}}}; // Serialize server-side data
     </script>
 
-    <!-- External .js files -->
     <script src="/js/chart.umd.js"></script>
     <script src="/js/progressChart.js"></script>
 
+    <!-- Render the chart -->
     <script>
-        renderProgressChart(fitnessGoals, progressEntries);
+        renderProgressChart(progressEntries);
     </script>
 
-    <li><a href="/dashboard">dashboard</a></li>
+    <li><a href="/dashboard">Dashboard</a></li>
 </div>
