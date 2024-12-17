@@ -1,21 +1,46 @@
 <div class="container">
-    <h1>Welcome, {{user.username}}!</h1>
+    <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Welcome, {{user.username}}!</h1>
+        <a href="/exercise-explanation" class="btn how-to-btn">How To</a>
+    </div>
+
     <p>Email: {{user.email}}</p>
 
     {{#if user.fitnessGoals}}
         <h3>Your Fitness Goals:</h3>
-        <p>Goal Type: {{user.fitnessGoals.goalType}}</p>
-        <p>Target Weight: {{user.fitnessGoals.targetWeight}}</p>
-        <p>Current Weight: {{user.fitnessGoals.currentWeight}}</p>
-        <p>Time Frame: {{user.fitnessGoals.timeFrame}}</p>
+        <p><strong>Goal Type:</strong> {{user.fitnessGoals.goalType}}</p>
+        <p><strong>Target Weight:</strong> {{user.fitnessGoals.targetWeight}}</p>
+        <p><strong>Current Weight:</strong> {{user.fitnessGoals.currentWeight}}</p>
+        <p><strong>Time Frame:</strong> {{user.fitnessGoals.timeFrame}}</p>
     {{/if}}
 
     <h3>Navigation</h3>
-    <ul>
-        <li><a href="/nutritionPlans">Nutrition Plans</a></li>
-        <li><a href="/workoutPlans">Workout Plans</a></li>
-        <li><a href="/strengthComparisons">Strength Comparisons</a></li>
-        <li><a href="/progress">Progress</a></li>
-        <li><a href="/logout">Logout</a></li>
-    </ul>
+    <div class="button-container">
+        <a href="/nutritionPlans" class="btn">Nutrition Plans</a>
+        <a href="/workoutPlans" class="btn">Workout Plans</a>
+        <a href="/strengthComparisons" class="btn">Strength Comparisons</a>
+        <a href="/progress" class="btn">Progress</a>
+        <a href="/logout" class="btn btn-logout">Logout</a>
+    </div>
 </div>
+
+<style>
+    .how-to-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+
+    .how-to-btn:hover {
+        background-color: #45a049;
+        transform: translateY(-3px);
+    }
+
+    .dashboard-header h1 {
+        margin: 0;
+    }
+</style>
