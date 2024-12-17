@@ -26,7 +26,7 @@ function renderProgressChart(progressEntries) {
                 plugins: { legend: { display: true } },
                 scales: {
                     x: { title: { display: true, text: 'Time' } },
-                    y: { title: { display: true, text: `${metric} (kg)` } }
+                    y: { title: { display: true, text: `${metric} (lbs)` } }
                 }
             }
         });

@@ -22,9 +22,9 @@
         <tr>
             <th>Date</th>
             <th>Exercise</th>
-            <th>Weight (kg)</th>
+            <th>Weight (lbs)</th>
             <th>Reps</th>
-            <th>1RM (kg)</th>
+            <th>1RM (lbs)</th>
         </tr>
         </thead>
         <tbody id="submissions-table-body">
@@ -45,7 +45,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="weight">Weight Lifted (kg):</label>
+            <label for="weight">Weight Lifted (lbs):</label>
             <input type="number" id="weight" name="weight" class="form-control" required />
         </div>
         <div class="form-group">
@@ -53,11 +53,11 @@
             <input type="number" id="reps" name="reps" class="form-control" required />
         </div>
         <div class="form-group">
-            <label for="bodyWeight">Body Weight (kg):</label>
+            <label for="bodyWeight">Body Weight (lbs):</label>
             <input type="number" id="bodyWeight" name="bodyWeight" class="form-control" required />
         </div>
         <div class="form-group">
-            <label for="height">Height (cm):</label>
+            <label for="height">Height (ft):</label>
             <input type="number" id="height" name="height" class="form-control" required />
         </div>
         <div class="form-group">
@@ -70,6 +70,8 @@
         </div>
         <button type="submit" class="btn btn-primary">Add Data</button>
     </form>
+
+    <a href="/dashboard" class="btn2" style="margin-top:20px;">Return to Dashboard</a>
 
     {{#if script_partial}}
         {{> (lookup . 'script_partial') }}

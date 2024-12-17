@@ -7,16 +7,16 @@
                 <li class="list-group-item">
                     <strong>Date:</strong> {{this.date}}
                     {{#if this.metrics.weight}}
-                        <br/><strong>Weight:</strong> {{this.metrics.weight}} kg
+                        <br/><strong>Weight:</strong> {{this.metrics.weight}} lbs
                     {{/if}}
                     {{#if this.metrics.benchPress}}
-                        <br/><strong>Bench Press:</strong> {{this.metrics.benchPress}} kg
+                        <br/><strong>Bench Press:</strong> {{this.metrics.benchPress}} lbs
                     {{/if}}
                     {{#if this.metrics.squat}}
-                        <br/><strong>Squat:</strong> {{this.metrics.squat}} kg
+                        <br/><strong>Squat:</strong> {{this.metrics.squat}} lbs
                     {{/if}}
                     {{#if this.metrics.deadlift}}
-                        <br/><strong>Deadlift:</strong> {{this.metrics.deadlift}} kg
+                        <br/><strong>Deadlift:</strong> {{this.metrics.deadlift}} lbs
                     {{/if}}
                     {{#if this.notes}}
                         <br/><strong>Notes:</strong> {{this.notes}}
@@ -35,19 +35,19 @@
             <input type="text" id="date" name="date" class="form-control" required />
         </div>
         <div class="form-group">
-            <label for="weight">Weight (kg):</label>
+            <label for="weight">Weight (lbs):</label>
             <input type="number" id="weight" name="weight" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
-            <label for="benchPress">Bench Press (kg):</label>
+            <label for="benchPress">Bench Press (lbs):</label>
             <input type="number" id="benchPress" name="benchPress" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
-            <label for="squat">Squat (kg):</label>
+            <label for="squat">Squat (lbs):</label>
             <input type="number" id="squat" name="squat" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
-            <label for="deadlift">Deadlift (kg):</label>
+            <label for="deadlift">Deadlift (lbs):</label>
             <input type="number" id="deadlift" name="deadlift" class="form-control" step="0.1" />
         </div>
         <div class="form-group">
@@ -86,5 +86,6 @@
         renderProgressChart(progressEntries);
     </script>
 
-    <li><a href="/dashboard">Dashboard</a></li>
+    <a href="/dashboard" class="btn2" style="margin-top:20px;">Return to Dashboard</a>
+
 </div>
