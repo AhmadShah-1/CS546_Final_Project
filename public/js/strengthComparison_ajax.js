@@ -52,7 +52,7 @@
                     x: {
                         min: 0,
                         max: maxX,
-                        title: { display: true, text: 'One Rep Max (kg)' }
+                        title: { display: true, text: 'One Rep Max (lbs)' }
                     },
                     y: {
                         title: { display: true, text: 'Users' },

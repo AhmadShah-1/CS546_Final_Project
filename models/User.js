@@ -9,8 +9,8 @@ const fitnessGoalsSchema = new mongoose.Schema({
 });
 
 const preferencesSchema = new mongoose.Schema({
-    weightUnit: { type: String, enum: ['kg', 'lbs'], default: 'kg' },
-    heightUnit: { type: String, enum: ['cm', 'ft'], default: 'cm' },
+    weightUnit: { type: String, enum: ['kg', 'lbs'], default: 'lbs' },
+    heightUnit: { type: String, enum: ['cm', 'ft'], default: 'ft' },
 });
 
 const userSchema = new mongoose.Schema({
