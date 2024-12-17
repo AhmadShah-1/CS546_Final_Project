@@ -33,6 +33,12 @@ router.post('/signup', async (req, res) => {
             throw new Error('Missing required fields: username, email, password');
         }
 
+        // Password validation regex
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            throw new Error('Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character.');
+        }
+
         const newUser = new User({
             username,
             email,
