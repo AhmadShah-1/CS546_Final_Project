@@ -34,7 +34,7 @@ function renderProgressChart(progressEntries) {
 
     drawChart('weight');
 
-    metricSelector.addEventListener('change', () => { // Redraw chart when new metric added
+    metricSelector.addEventListener('change', () => {
         drawChart(metricSelector.value);
     });
 }
