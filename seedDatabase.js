@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import User from './models/User.js';
 import NutritionPlan from './models/NutritionPlan.js';
+import StrengthComparison from './models/StrengthComparison.js';
 
 dotenv.config();
 
@@ -16,29 +17,29 @@ async function main() {
 
         await User.deleteMany({});
         await NutritionPlan.deleteMany({});
-
+        await StrengthComparison.deleteMany({});
 
         const [user1, user2] = await User.create([
             {
-                username: 'AhmadShah',
-                email: 'ahmad123455@gmail.com',
+                username: 'SyedShah',
+                email: 'syed@gmail.com',
                 password: 'Password123!',
                 fitnessGoals: {
                     goalType: 'weight loss',
-                    targetWeight: 200,
-                    currentWeight: 170,
+                    targetWeight: 70,
+                    currentWeight: 85,
                     timeFrame: '3 months'
                 },
-                age: 21,
-                height: 183,
-                bodyWeight: 170,
-                yearsLifting: 4,
-                bio: 'Looking to get buff broooo',
+                age: 30,
+                height: 175,
+                bodyWeight: 85,
+                yearsLifting: 2,
+                bio: 'Looking to lose weight and get healthier.',
                 preferences: { weightUnit: 'kg', heightUnit: 'cm' }
             },
             {
                 username: 'CarlGuillermo',
-                email: 'carl@gmail.com',
+                email: 'CarlGuillermo@gmail.com',
                 password: 'Password123!',
                 fitnessGoals: {
                     goalType: 'muscle gain',
@@ -50,7 +51,7 @@ async function main() {
                 height: 165,
                 bodyWeight: 60,
                 yearsLifting: 1,
-                bio: 'i like broccoli and potatoes',
+                bio: 'Building muscle and strength!',
                 preferences: { weightUnit: 'kg', heightUnit: 'cm' }
             }
         ]);
@@ -59,9 +60,9 @@ async function main() {
             userId: user1._id,
             planName: 'Keto Diet Plan',
             meals: [
-                { mealType: 'Breakfast', items: ['Eggs', 'Avocado'] },
+                { mealType: 'Breakfast', items: ['Eggs', 'Avocado', 'Bacon'] },
                 { mealType: 'Lunch', items: ['Grilled Chicken', 'Broccoli', 'Olive Oil'] },
-                { mealType: 'Dinner', items: ['Salmon', 'Butter'] }
+                { mealType: 'Dinner', items: ['Salmon', 'Asparagus', 'Butter'] }
             ]
         });
 
@@ -85,11 +86,74 @@ async function main() {
             ]
         });
 
+
+        await StrengthComparison.create([
+            {
+                userId: user1._id,
+                exercise: 'bench_press',
+                weight: 100,
+                reps: 5,
+                oneRepMax: 120,
+                bodyWeight: user1.bodyWeight,
+                height: user1.height,
+                experienceLevel: 'intermediate'
+            },
+            {
+                userId: user1._id,
+                exercise: 'squat',
+                weight: 120,
+                reps: 5,
+                oneRepMax: 140,
+                bodyWeight: user1.bodyWeight,
+                height: user1.height,
+                experienceLevel: 'intermediate'
+            },
+            {
+                userId: user1._id,
+                exercise: 'deadlift',
+                weight: 130,
+                reps: 5,
+                oneRepMax: 155,
+                bodyWeight: user1.bodyWeight,
+                height: user1.height,
+                experienceLevel: 'intermediate'
+            },
+            {
+                userId: user2._id,
+                exercise: 'bench_press',
+                weight: 50,
+                reps: 8,
+                oneRepMax: 62,
+                bodyWeight: user2.bodyWeight,
+                height: user2.height,
+                experienceLevel: 'beginner'
+            },
+            {
+                userId: user2._id,
+                exercise: 'squat',
+                weight: 70,
+                reps: 6,
+                oneRepMax: 85,
+                bodyWeight: user2.bodyWeight,
+                height: user2.height,
+                experienceLevel: 'beginner'
+            },
+            {
+                userId: user2._id,
+                exercise: 'deadlift',
+                weight: 80,
+                reps: 5,
+                oneRepMax: 95,
+                bodyWeight: user2.bodyWeight,
+                height: user2.height,
+                experienceLevel: 'beginner'
+            }
+        ]);
+
         console.log('Seeded data successfully!');
         console.log('Users created:', user1.username, user2.username);
         console.log('Nutrition Plans created:', plan1.planName, plan2.planName, plan3.planName);
-
-
+        console.log('StrengthComparison entries for bench_press, squat, deadlift added.');
 
     } catch (error) {
         console.error('Error seeding the database:', error);

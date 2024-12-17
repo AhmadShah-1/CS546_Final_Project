@@ -8,7 +8,6 @@
     let planNameInput = $('#plan-name');
     let addMealBtn = $('#add-meal-btn');
     let mealsContainer = $('#meals-container');
-
   
     function createMealRow() {
         return $(`
@@ -20,7 +19,6 @@
     `);
     }
 
-    
     function createNutritionPlanElement(plan) {
         let planDiv = $('<div>')
             .addClass('nutrition-plan-item')
@@ -38,7 +36,6 @@
         return planDiv;
     }
 
-    
     function loadAllPlans() {
         $.ajax({
             method: 'GET',
@@ -55,14 +52,10 @@
                 errorAlert.text('Error loading nutrition plans: ' + jqXHR.responseText).show();
             });
     }
-
     
     loadAllPlans();
 
-    
     mealsContainer.append(createMealRow());
-
-    
     addMealBtn.on('click', function () {
         mealsContainer.append(createMealRow());
     });

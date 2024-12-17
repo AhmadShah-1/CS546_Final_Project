@@ -30,7 +30,6 @@ app.use(
     })
 );
 
-// absolute path for the public folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));

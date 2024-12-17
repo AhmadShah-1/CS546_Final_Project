@@ -1,0 +1,77 @@
+<div class="container">
+    <h1 class="page-title">Strength Comparisons</h1>
+
+    <div id="error-alert" style="color:red; display:none;"></div>
+
+    <label for="exercise-select">Select Exercise to View:</label>
+    <select id="exercise-select">
+        <option value="bench_press">Bench Press</option>
+        <option value="squat">Squat</option>
+        <option value="deadlift">Deadlift</option>
+        <option value="overhead_press">Overhead Press</option>
+        <option value="barbell_row">Barbell Row</option>
+    </select>
+
+    <div style="width: 600px; margin-top: 20px;">
+        <canvas id="strength-chart" width="600" height="300"></canvas>
+    </div>
+
+    <h2>Your Submissions</h2>
+    <table class="table" style="margin-top:10px;">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Exercise</th>
+            <th>Weight (kg)</th>
+            <th>Reps</th>
+            <th>1RM (kg)</th>
+        </tr>
+        </thead>
+        <tbody id="submissions-table-body">
+        </tbody>
+    </table>
+
+    <hr/>
+    <h2>Add New Strength Data</h2>
+    <form action="/strengthComparisons" method="POST" class="form">
+        <div class="form-group">
+            <label for="exercise">Exercise:</label>
+            <select id="exercise" name="exercise" class="form-control" required>
+                <option value="bench_press">Bench Press</option>
+                <option value="squat">Squat</option>
+                <option value="deadlift">Deadlift</option>
+                <option value="overhead_press">Overhead Press</option>
+                <option value="barbell_row">Barbell Row</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight Lifted (kg):</label>
+            <input type="number" id="weight" name="weight" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="reps">Reps:</label>
+            <input type="number" id="reps" name="reps" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="bodyWeight">Body Weight (kg):</label>
+            <input type="number" id="bodyWeight" name="bodyWeight" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="experienceLevel">Experience Level:</label>
+            <select id="experienceLevel" name="experienceLevel" class="form-control" required>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Data</button>
+    </form>
+
+    {{#if script_partial}}
+        {{> (lookup . 'script_partial') }}
+    {{/if}}
+</div>
