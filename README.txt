@@ -1,28 +1,59 @@
 # Fitness Web Application
 
 ## Overview
-This project is a fitness tracking tool that currently includes user authentication (sign up and login). Users can register with their username, email, and password. Their data is securely stored in MongoDB with encrypted passwords. Fitness goals will be added in future iterations.
+The Fitness Web Application is a comprehensive tool designed to help users set, track, and achieve their fitness goals. The application supports user authentication, goal management, and progress visualization. Built using modern web development technologies, it ensures secure data handling and provides an intuitive user experience.
 
-##Procedure for running program for windows
-1. Navigate to file in cmd or powershell
-2. Enter "npm install"
-   - This should download all required dependencies
-3. Enter "npm start"
-   - web program will automatically open up in browser
+---
 
-## Code Flow
-1. **User Authentication:**
-   - The app routes `/signup` and `/login` allow users to create accounts and log in.
-   - User data is stored in MongoDB, and passwords are hashed using bcrypt.
-   - Upon successful login, session data is created for the user.
+## Features
+### User Authentication
+- **Secure Sign-Up & Log-In:**
+  - Users register with a unique username, email, and password.
+  - Passwords are securely hashed using `bcrypt` to ensure data security.
+- **Session Management:**
+  - Sessions are managed using `express-session` to maintain login states.
 
-2. **MongoDB Usage:**
-   - The `ObjectId` is used to uniquely identify each user in the database.
+### Fitness Goal Management
+- **Personalized Goals:**
+  - Set, view, and track progress for fitness goals.
+- **Progress Tracking:**
+  - Visualize achievements over time.
 
-3. **Future Directions:**
-   - Add features to let users set fitness goals and track their progress.
-   - Implement additional pages for tracking and displaying fitness goals.
+### Data Storage
+- **MongoDB Database:**
+  - User data and goals are stored securely using the `Mongoose` ODM.
+  - Data validation ensures integrity and consistency.
 
-## Directory Structure
-The app follows a modular structure with `routes`, `views`, and `data` directories.
+---
 
+## Tools and Libraries Used
+### Backend
+- **Node.js**: Runtime for building the application.
+- **Express.js**: Framework to handle routing and middleware efficiently.
+- **MongoDB**: NoSQL database to store user and fitness goal data.
+- **Mongoose**: Object Data Modeling (ODM) library for MongoDB.
+- **bcrypt**: Library for securely hashing user passwords.
+- **dotenv**: For managing environment variables securely.
+- **express-session**: For managing user sessions and login persistence.
+
+### Frontend
+- **HTML/CSS**: For designing the user interface.
+- **Handlebars.js**: Templating engine to render dynamic views.
+- **Custom CSS**: Tailored styles for user-friendly interfaces.
+
+### Development Tools
+- **npm**: Package manager for installing dependencies.
+- **Git**: Version control system for collaboration and code tracking.
+
+---
+
+## Installation
+### Prerequisites
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
+
+### Steps
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/AhmadShah-1/CS546_Final_Project.git
+   cd CS546_Final_Project
